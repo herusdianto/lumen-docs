@@ -7,7 +7,6 @@
 	- [Storing Items In The Cache](#storing-items-in-the-cache)
 	- [Removing Items From The Cache](#removing-items-from-the-cache)
 
-<a name="configuration"></a>
 ## Configuration
 
 Lumen provides a unified API for various caching systems. The cache configuration is located in your application's `env` file. In this file you may specify which cache driver you would like used by default throughout your application. Lumen supports popular caching backends like [Memcached](http://memcached.org) and [Redis](http://redis.io) out of the box. For larger applications, it is recommended that you use an in-memory cache such as Memcached or APC.
@@ -32,10 +31,8 @@ Using the Memcached cache requires the [Memcached PECL package](http://pecl.php.
 
 Before using a Redis cache with Lumen, you will need to install the `predis/predis` package (~1.0) via Composer.
 
-<a name="cache-usage"></a>
 ## Cache Usage
 
-<a name="obtaining-a-cache-instance"></a>
 ### Obtaining A Cache Instance
 
 The `Illuminate\Contracts\Cache\Factory` and `Illuminate\Contracts\Cache\Repository` [contracts](http://laravel.com/docs/contracts) provide access to Lumen's cache services. The `Factory` contract provides access to all cache drivers defined for your application. The `Repository` contract is typically an implementation of the default cache driver for your application as specified by your `cache` configuration file.
@@ -73,7 +70,6 @@ Using the `Cache` facade, you may access various cache stores via the `store` me
 
 	Cache::store('redis')->put('bar', 'baz', 10);
 
-<a name="retrieving-items-from-the-cache"></a>
 ### Retrieving Items From The Cache
 
 The `get` method on the `Cache` facade is used to retrieve items from the cache. If the item does not exist in the cache, `null` will be returned. If you wish, you may pass a second argument to the `get` method specifying the custom default value you wish to be returned if the item doesn't exist:
@@ -131,7 +127,6 @@ If you need to retrieve an item from the cache and then delete it, you may use t
 
 	$value = Cache::pull('key');
 
-<a name="storing-items-in-the-cache"></a>
 ### Storing Items In The Cache
 
 You may use the `put` method on the `Cache` facade to store items in the cache. When you place an item in the cache, you will need to specify the number of minutes for which the value should be cached:
@@ -152,7 +147,6 @@ The `forever` method may be used to store an item in the cache permanently. Thes
 
 	Cache::forever('key', 'value');
 
-<a name="removing-items-from-the-cache"></a>
 ### Removing Items From The Cache
 
 You may remove items from the cache using the `forget` method on the `Cache` facade:

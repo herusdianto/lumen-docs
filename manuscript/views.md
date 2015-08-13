@@ -4,7 +4,6 @@
 	- [Passing Data To Views](#passing-data-to-views)
 	- [Sharing Data With All Views](#sharing-data-with-all-views)
 
-<a name="basic-usage"></a>
 ## Basic Usage
 
 Views contain the HTML served by your application and separate your controller / application logic from your presentation logic. Views are stored in the `resources/views` directory.
@@ -41,10 +40,8 @@ If you need to determine if a view exists, you may use the `exists` method after
 
 When the `view` helper is called without arguments, an instance of `Illuminate\Contracts\View\Factory` is returned, giving you access to any of the factory's methods.
 
-<a name="view-data"></a>
 ### View Data
 
-<a name="passing-data-to-views"></a>
 #### Passing Data To Views
 
 As you saw in the previous examples, you may easily pass an array of data to views:
@@ -55,7 +52,6 @@ When passing information in this manner, `$data` should be an array with key/val
 
 	$view = view('greeting')->with('name', 'Victoria');
 
-<a name="sharing-data-with-all-views"></a>
 #### Sharing Data With All Views
 
 Occasionally, you may need to share a piece of data with all views that are rendered by your application. You may do so using the view factory's `share` method. Typically, you would place calls to `share` within a service provider's `boot` method. You are free to add them to the `AppServiceProvider` or generate a separate service provider to house them:

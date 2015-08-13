@@ -3,12 +3,10 @@
 - [Configuration](#configuration)
 - [Basic Usage](#basic-usage)
 
-<a name="configuration"></a>
 ## Configuration
 
 Before using Lumens's encrypter, you should set the `APP_KEY` option of your `bootstrap/app.php` file to a 32 character, random string. If this value is not properly set, all values encrypted by Lumens will be insecure.
 
-<a name="basic-usage"></a>
 ## Basic Usage
 
 #### Encrypting A Value

@@ -14,7 +14,6 @@
 	- [Mocking Jobs](#mocking-jobs)
 	- [Mocking Facades](#mocking-facades)
 
-<a name="introduction"></a>
 ## Introduction
 
 Lumen is built with testing in mind. In fact, support for testing with PHPUnit is included out of the box, and a `phpunit.xml` file is already setup for your application. The framework also ships with convenient helper methods allowing you to expressively test your applications.
@@ -43,7 +42,6 @@ To create a test case, simply create a new test file in the `tests` directory. T
 
 > **Note:** If you define your own `setUp` method within a test class, be sure to call `parent::setUp`.
 
-<a name="application-testing"></a>
 ## Application Testing
 
 Lumen provides a very fluent API for making HTTP requests to your application, examining the output, and even filling out forms. For example, take a look at the `ExampleTest.php` file included in your `tests` directory:
@@ -66,7 +64,6 @@ Lumen provides a very fluent API for making HTTP requests to your application, e
 
 The `visit` method makes a `GET` request into the application. The `see` method asserts that we should see the given text in the response returned by the application. This is the most basic application test available in Lumen.
 
-<a name="interacting-with-your-application"></a>
 ### Interacting With Your Application
 
 Of course, you can do much more than simply assert that text appears in a given response. Let's take a look at some examples of clicking links and filling out forms:
@@ -140,7 +137,6 @@ If your form contains `file` input types, you may attach files to the form using
              ->see('Upload Successful!');
     }
 
-<a name="testing-json-apis"></a>
 ### Testing JSON APIs
 
 Lumen also provides several helpers for testing JSON APIs and their responses. For example, the `get`, `post`, `put`, `patch`, and `delete` methods may be used to issue requests with various HTTP verbs. You may also easily pass data and headers to these methods. To get started, let's write a test to make a `POST` request to `/user` and assert that a given array was returned in JSON format:
@@ -187,7 +183,6 @@ If you would like to verify that the given array is an **exact** match for the J
 	    }
 	}
 
-<a name="sessions-and-authentication"></a>
 ### Sessions / Authentication
 
 Lumen provides several helpers for working with the session during testing. First, you may set the session data to a given array using the `withSession` method. This is useful for loading the session with data before testing a request to your application:
@@ -220,7 +215,6 @@ Of course, one common use of the session is for maintaining user state, such as 
 	    }
 	}
 
-<a name="custom-http-requests"></a>
 ### Custom HTTP Requests
 
 If you would like to make a custom HTTP request into your application and get the full `Illuminate\Http\Response` object, you may use the `call` method:
@@ -236,7 +230,6 @@ If you are making `POST`, `PUT`, or `PATCH` requests you may pass an array of in
 
    	$response = $this->call('POST', '/user', ['name' => 'Taylor']);
 
-<a name="working-with-databases"></a>
 ## Working With Databases
 
 Lumen also provides a variety of helpful tools to make it easier to test your database driven applications. First, you may use the `seeInDatabase` helper to assert that data exists in the database matching a given set of criteria. For example, if we would like to verify that there is a record in the `users` table with the `email` value of `sally@example.com`, we can do the following:
@@ -250,7 +243,6 @@ Lumen also provides a variety of helpful tools to make it easier to test your da
 
 Of course, the `seeInDatabase` method and other helpers like it are for convenience. You are free to use any of PHPUnit's built-in assertion methods to supplement your tests.
 
-<a name="resetting-the-database-after-each-test"></a>
 ### Resetting The Database After Each Test
 
 It is often useful to reset your database after each test so that data from a previous test does not interfere with subsequent tests.
@@ -305,7 +297,6 @@ Another option is to wrap every test case in a database transaction. Again, Lume
 	    }
 	}
 
-<a name="model-factories"></a>
 ### Model Factories
 
 When testing, it is common to need to insert a few records into your database before executing your test. Instead of manually specifying the value of each column when you create this test data, Lumen allows you to define a default set of attributes for each of your [Eloquent models](http://laravel.com/docs/eloquent) using "factories". To get started, take a look at the `database/factories/ModelFactory.php` file in your application. Out of the box, this file contains one factory definition:
@@ -400,10 +391,8 @@ You may even persist multiple models to the database. In this example, we'll eve
 					$u->posts()->save(factory('App\Post')->make());
 				});
 
-<a name="mocking"></a>
 ## Mocking
 
-<a name="mocking-events"></a>
 ### Mocking Events
 
 If you are making heavy use of Lumen's event system, you may wish to silence or mock certain events while testing. For example, if you are testing user registration, you probably do not want all of a `UserRegistered` event's handlers firing, since these may send "welcome" e-mails, etc.
@@ -436,7 +425,6 @@ If you would like to prevent all event handlers from running, you may use the `w
 	    }
 	}
 
-<a name="mocking-jobs"></a>
 ### Mocking Jobs
 
 Sometimes, you may wish to simply test that specific jobs are dispatched by your controllers when making requests to your application. This allows you to test your routes / controllers in isolation - set apart from your job's logic. Of course, you can then test the job itself in a separate test class.
@@ -457,7 +445,6 @@ Lumen provides a convenient `expectsJobs` method that will verify that the expec
 
 > **Note:** This method only detects jobs that are dispatched via the `DispatchesJobs` trait's dispatch methods. It does not detect jobs that are sent directly to `Queue::push`.
 
-<a name="mocking-facades"></a>
 ### Mocking Facades
 
 When testing, you may often want to mock a call to a Lumen [facade](http://laravel.com/docs/facades). For example, consider the following controller action:

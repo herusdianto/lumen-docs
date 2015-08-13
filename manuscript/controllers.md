@@ -5,12 +5,10 @@
 - [Controller Middleware](#controller-middleware)
 - [Dependency Injection & Controllers](#dependency-injection-and-controllers)
 
-<a name="introduction"></a>
 ## Introduction
 
 Instead of defining all of your request handling logic in a single `routes.php` file, you may wish to organize this behavior using Controller classes. Controllers can group related HTTP request handling logic into a class. Controllers are typically stored in the `app/Http/Controllers` directory.
 
-<a name="basic-controllers"></a>
 ## Basic Controllers
 
 Here is an example of a basic controller class. All Lumen controllers should extend the base controller class included with the default Lumen installation:
@@ -63,7 +61,6 @@ You may also use the `route` helper to generate a URL to a named controller rout
 
 	$url = route('name');
 
-<a name="controller-middleware"></a>
 ## Controller Middleware
 
 [Middleware](/docs/middleware) may be assigned to the controller's routes like so:
@@ -92,7 +89,6 @@ However, it is more convenient to specify middleware within your controller's co
 		}
 	}
 
-<a name="dependency-injection-and-controllers"></a>
 ## Dependency Injection & Controllers
 
 #### Constructor Injection

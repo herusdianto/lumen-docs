@@ -11,7 +11,6 @@
 	- [Redirecting To Named Routes](#redirecting-named-routes)
 	- [Redirecting With Flashed Session Data](#redirecting-with-flashed-session-data)
 
-<a name="basic-responses"></a>
 ## Basic Responses
 
 Of course, all routes and controllers should return some kind of response to be sent back to the user's browser. Lumen provides several different ways to return responses. The most basic response is simply returning a string from a route or controller:
@@ -40,7 +39,6 @@ For convenience, you may also use the `response` helper:
 
 > **Note:** For a full list of available `Response` methods, check out its [API documentation](http://laravel.com/api/master/Illuminate/Http/Response.html) and the [Symfony API documentation](http://api.symfony.com/2.7/Symfony/Component/HttpFoundation/Response.html).
 
-<a name="attaching-headers-to-responses"></a>
 #### Attaching Headers To Responses
 
 Keep in mind that most response methods are chainable, allowing for the fluent building of responses. For example, you may use the `header` method to add a series of headers to the response before sending it back to the user:
@@ -51,7 +49,6 @@ Keep in mind that most response methods are chainable, allowing for the fluent b
 				->header('X-Header-Two', 'Header Value');
 
 
-<a name="attaching-cookies-to-responses"></a>
 #### Attaching Cookies To Responses
 
 The `withCookie` helper method on the response instance allows you to easily attach cookies to the response. For example, you may use the `withCookie` method to generate a cookie and attach it to the response instance:
@@ -63,12 +60,10 @@ The `withCookie` method accepts additional optional arguments which allow you to
 
 	->withCookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly)
 
-<a name="other-response-types"></a>
 ## Other Response Types
 
 The `response` helper may be used to conveniently generate other types of response instances. When the `response` helper is called without arguments, an implementation of the `Illuminate\Contracts\Routing\ResponseFactory` contract is returned. This contract provides several helpful methods for generating responses.
 
-<a name="view-responses"></a>
 #### View Responses
 
 If you need control over the response status and headers, but also need to return a [view](/docs/views) as the response content, you may use the `view` method:
@@ -77,7 +72,6 @@ If you need control over the response status and headers, but also need to retur
 
 Of course, if you do not need to pass a custom HTTP status code or custom headers, you may simply use the global `view` helper function.
 
-<a name="json-responses"></a>
 #### JSON Responses
 
 The `json` method will automatically set the `Content-Type` header to `application/json`, as well as convert the given array into JSON using the `json_encode` PHP function:
@@ -89,7 +83,6 @@ If you would like to create a JSONP response, you may use the `json` method in a
 	return response()->json(['name' => 'Abigail', 'state' => 'CA'])
 	                 ->setCallback($request->input('callback'));
 
-<a name="file-downloads"></a>
 #### File Downloads
 
 The `download` method may be used to generate a response that forces the user's browser to download the file at the given path. The `download` method accepts a file name as the second argument to the method, which will determine the file name that is seen by the user downloading the file. Finally, you may pass an array of HTTP headers as the third argument to the method:
@@ -100,7 +93,6 @@ The `download` method may be used to generate a response that forces the user's 
 
 > **Note:** Symfony HttpFoundation, which manages file downloads, requires the file being downloaded to have an ASCII file name.
 
-<a name="redirects"></a>
 ## Redirects
 
 Redirect responses are instances of the `Illuminate\Http\RedirectResponse` class, and contain the proper headers needed to redirect the user to another URL. There are several ways to generate a `RedirectResponse` instance. The simplest method is to use the global `redirect` helper method:
@@ -117,7 +109,6 @@ Sometimes you may wish to redirect the user to their previous location, for exam
 		return redirect()->back()->withInput();
 	});
 
-<a name="redirecting-named-routes"></a>
 #### Redirecting To Named Routes
 
 When you call the `redirect` helper with no parameters, an instance of `Illuminate\Routing\Redirector` is returned, allowing you to call any method on the `Redirector` instance. For example, to generate a `RedirectResponse` to a named route, you may use the `route` method:
@@ -134,7 +125,6 @@ If you are redirecting to a route with an "ID" parameter that is being populated
 
 	return redirect()->route('profile', [$user]);
 
-<a name="redirecting-with-flashed-session-data"></a>
 #### Redirecting With Flashed Session Data
 
 > **Note:** You must [enable sessions](/docs/session) before using this feature.

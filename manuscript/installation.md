@@ -8,21 +8,17 @@
 	- [Custom Configuration Files](#custom-configuration-files)
 	- [Accessing Configuration Values](#accessing-configuration-values)
 
-<a name="installation"></a>
 ## Installation
 
 ### Server Requirements
 
 The Lumen framework has a few system requirements. Of course, all of these requirements are satisfied by the [Laravel Homestead](http://laravel.com/docs/homestead) virtual machine:
 
-<div class="content-list" markdown="1">
 - PHP >= 5.5.9
 - OpenSSL PHP Extension
 - Mbstring PHP Extension
 - Tokenizer PHP Extension
-</div>
 
-<a name="install-lumen"></a>
 ### Installing Lumen
 
 Lumen utilizes [Composer](http://getcomposer.org) to manage its dependencies. So, before using Lumen, make sure you have Composer installed on your machine.
@@ -45,10 +41,8 @@ You may also install Lumen by issuing the Composer `create-project` command in y
 
 	composer create-project laravel/lumen --prefer-dist
 
-<a name="configuration"></a>
 ## Configuration
 
-<a name="basic-configuration"></a>
 ### Basic Configuration
 
 Unlike the full-stack Laravel framework which has multiple configuration files, all of the configuration options for the Lumen framework are stored in a single `.env` configuration file.
@@ -68,7 +62,6 @@ You may also want to configure a few additional components of Lumen, such as:
 - [Cache](/docs/cache#configuration)
 - [Database](/docs/database#configuration)
 
-<a name="pretty-urls"></a>
 #### Pretty URLs
 
 **Apache**
@@ -94,7 +87,6 @@ On Nginx, the following directive in your site configuration will allow "pretty"
 
 Of course, when using [Homestead](http://laravel.com/docs/homestead), pretty URLs will be configured automatically.
 
-<a name="environment-configuration"></a>
 ### Environment Configuration
 
 It is often helpful to have different configuration values based on the environment the application is running in. For example, you may wish to use a different cache driver locally than you do on your production server. It's easy using environment based configuration.
@@ -107,14 +99,12 @@ Feel free to modify your environment variables as needed for your own local serv
 
 If you are developing with a team, you may wish to continue including a `.env.example` file with your application. By putting place-holder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application.
 
-<a name="configuration-files"></a>
 #### Configuration Files
 
 You may use full "Laravel style" configuration files if you wish. The default files are stored in the `vendor/laravel/lumen-framework/config` directory. Lumen will use your copy of the configuration file if you copy and paste one of the files into a `config` directory within your project root.
 
 Using full configuration files will give you more control over some aspects of Lumen's configuration, such as configuring multiple storage "disks" or read / write database connections.
 
-<a name="custom-configuration-files"></a>
 #### Custom Configuration Files
 
 You may also create your own custom configuration files and load them using the `$app->configure()` method. For example, if your configuration file is located at `config/options.php`, you can load the file like so:
@@ -141,7 +131,6 @@ An application instance may also be accessed via the `app` helper method:
 
 	$environment = app()->environment();
 
-<a name="accessing-configuration-values"></a>
 ### Accessing Configuration Values
 
 You may easily access your configuration values using the global `config` helper function. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you with to access. A default value may also be specified and will be returned if the configuration option does not exist:

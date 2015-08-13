@@ -4,7 +4,6 @@
 - [Basic Usage](#basic-usage)
 	- [Flash Data](#flash-data)
 
-<a name="introduction"></a>
 ## Introduction
 
 Since HTTP driven applications are stateless, sessions provide a way to store information about the user across requests. Lumen ships with a variety of session back-ends available for use through a clean, unified API. Support for popular back-ends such as [Memcached](http://memcached.org), [Redis](http://redis.io), and databases is included out of the box.
@@ -19,13 +18,11 @@ The session driver is controlled by the `SESSION_DRIVER` configuration option in
 
 The session driver defines where session data will be stored for each request. Lumen ships with several great drivers out of the box:
 
-<div class="content-list" markdown="1">
 - `file` - sessions are stored in `storage/framework/sessions`.
 - `cookie` - sessions are stored in secure, encrypted cookies.
 - `database` - sessions are stored in a database used by your application.
 - `memcached` / `redis` - sessions are stored in one of these fast, cached based stores.
 - `array` - sessions are stored in a simple PHP array and will not be persisted across requests.
-</div>
 
 > **Note:** The array driver is typically used for running [tests](/docs/testing) to prevent session data from persisting.
 
@@ -49,7 +46,6 @@ Before using Redis sessions with Lumen, you will need to install the `predis/pre
 
 The Lumen framework uses the `flash` session key internally, so you should not add an item to the session by that name.
 
-<a name="basic-usage"></a>
 ## Basic Usage
 
 #### Accessing The Session
@@ -142,7 +138,6 @@ If you need to regenerate the session ID, you may use the `regenerate` method:
 
 	$request->session()->regenerate();
 
-<a name="flash-data"></a>
 ### Flash Data
 
 Sometimes you may wish to store items in the session only for the next request. You may do so using the `flash` method. Method stored in the session using this method will only be available during the subsequent HTTP request, and then will be deleted. Flash data is primarily useful for short-lived status messages:

@@ -8,7 +8,6 @@
 	- [Cookies](#cookies)
 	- [Files](#files)
 
-<a name="accessing-the-request"></a>
 ## Accessing The Request
 
 To obtain an instance of the current HTTP request via dependency injection, you should type-hint the `Illuminate\Http\Request` class on your controller constructor or method. The current request instance will automatically be injected by the [service container](/docs/container):
@@ -62,7 +61,6 @@ You may still type-hint the `Illuminate\Http\Request` and access your route para
 		}
 	}
 
-<a name="basic-request-information"></a>
 ### Basic Request Information
 
 The `Illuminate\Http\Request` instance provides a variety of methods for examining the HTTP request for your application. The Lumen `Illuminate\Http\Request` extends the `Symfony\Component\HttpFoundation\Request` class. Here are a few more of the useful methods available on this class:
@@ -93,7 +91,6 @@ The `method` method will return the HTTP verb for the request. You may also use 
 		//
 	}
 
-<a name="psr7-requests"></a>
 ### PSR-7 Requests
 
 The PSR-7 standard specifies interfaces for HTTP messages, including requests and responses. If you would like to obtain an instance of a PSR-7 request, you will first need to install a few libraries. Lumen uses the Symfony HTTP Message Bridge component to convert typical Lumen requests and responses into PSR-7 compatible implementations:
@@ -112,7 +109,6 @@ Once you have installed these libraries, you may obtain a PSR-7 request by simpl
 
 If you return a PSR-7 response instance from a route or controller, it will automatically be converted back to a Lumen response instance and be displayed by the framework.
 
-<a name="retrieving-input"></a>
 ## Retrieving Input
 
 #### Retrieving An Input Value
@@ -151,7 +147,6 @@ If you need to retrieve a sub-set of the input data, you may use the `only` and 
 
 	$input = $request->except('credit_card');
 
-<a name="old-input"></a>
 ### Old Input
 
 > **Note:** You must [enable sessions](/docs/session) before using this feature.
@@ -188,7 +183,6 @@ Lumen also provides a global `old` helper function. If you are displaying old in
 
 	{{ old('username') }}
 
-<a name="cookies"></a>
 ### Cookies
 
 To force all cookies to be encrypted and signed, you will need to uncomment the EncryptCookies middleware in your bootstrap/app.php file. All signed cookies created by the Lumen and Laravel frameworks are encrypted and signed with an authentication code, meaning they will be considered invalid if they have been changed by the client.
@@ -213,7 +207,6 @@ To create a long-lived cookie, which lasts for five years, you may use the `fore
 
 	$response->withCookie(cookie()->forever('name', 'value'));
 
-<a name="files"></a>
 ### Files
 
 #### Retrieving Uploaded Files

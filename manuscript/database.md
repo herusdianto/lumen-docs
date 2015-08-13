@@ -4,7 +4,6 @@
 - [Basic Usage](#basic-usage)
 - [Migrations](#migrations)
 
-<a name="configuration"></a>
 ## Configuration
 
 Lumen makes connecting with databases and running queries extremely simple. Currently Lumen supports four database systems: MySQL, Postgres, SQLite, and SQL Server.
@@ -13,7 +12,6 @@ You may use the `DB_*` configuration options in your `.env` configuration file t
 
 > **Note:** In order for your configuration values to be loaded, you will need to uncomment the `Dotenv::load()` method call in your `bootstrap/app.php` file.
 
-<a name="basic-usage"></a>
 ## Basic Usage
 
 > **Note:** If you would like to use the `DB` facade, you should uncomment the `$app->withFacades()` call in your `bootstrap/app.php` file.
@@ -41,7 +39,6 @@ If you would like to use the Eloquent ORM, you should uncomment the `$app->withE
 
 Of course, you may easily use the full Eloquent ORM with Lumen. To learn how to use Eloquent, check out the [full Laravel documentation](http://laravel.com/docs/eloquent).
 
-<a name="migrations"></a>
 ## Migrations
 
 For further information on how to create database tables and run migrations, check out the Laravel documentation on the  [migrations](http://laravel.com/docs/migrations).

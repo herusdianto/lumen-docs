@@ -14,12 +14,10 @@
 	- [Failed Job Events](#failed-job-events)
 	- [Retrying Failed Jobs](#retrying-failed-jobs)
 
-<a name="introduction"></a>
 ## Introduction
 
 The Lumen queue service provides a unified API across a variety of different queue back-ends. Queues allow you to defer the processing of a time consuming task, such as sending an e-mail, until a later time which drastically speeds up web requests to your application.
 
-<a name="configuration"></a>
 ### Configuration
 
 The `QUEUE_DRIVER` option in your `.env` file determines the queue "driver" that will be used by your application.
@@ -43,10 +41,8 @@ The following dependencies are needed for the listed queue drivers:
 - IronMQ: `iron-io/iron_mq ~2.0`
 - Redis: `predis/predis ~1.0`
 
-<a name="writing-job-classes"></a>
 ## Writing Job Classes
 
-<a name="job-class-structure"></a>
 ### Job Class Structure
 
 By default, all of the queueable jobs for your application are stored in the `app/Jobs` directory. Job classes are very simple, normally containing only a `handle` method which is called when the job is processed by the queue. To get started, let's take a look at an example job class:
@@ -127,7 +123,6 @@ As noted above, if an exception occurs while the job is being processed, it will
 		}
 	}
 
-<a name="pushing-jobs-onto-the-queue"></a>
 ## Pushing Jobs Onto The Queue
 
 The default Lumen controller located in `app/Http/Controllers/Controller.php` uses a `DispatchesJob` trait. This trait provides several methods allowing you to conveniently push jobs onto the queue, such as the `dispatch` method:
@@ -192,7 +187,6 @@ By pushing jobs to different queues, you may "categorize" your queued jobs, and 
 		}
 	}
 
-<a name="delayed-jobs"></a>
 ### Delayed Jobs
 
 Sometimes you may wish to delay the execution of a queued job. For instance, you may wish to queue a job that sends a customer a reminder e-mail 15 minutes after sign-up. You may accomplish this using the `delay` method on your job class, which is provided by the `Illuminate\Bus\Queueable` trait:
@@ -229,7 +223,6 @@ In this example, we're specifying that the job should be delayed in the queue fo
 
 > **Note:** The Amazon SQS service has a maximum delay time of 15 minutes.
 
-<a name="dispatching-jobs-from-requests"></a>
 ### Dispatching Jobs From Requests
 
 It is very common to map HTTP request variables into jobs. So, instead of forcing you to do this manually for each request, Lumen provides some helper methods to make it a cinch. Let's take a look at the `dispatchFrom` method available on the `DispatchesJobs` trait. By default, this trait is included on the base Lumen controller class:
@@ -266,7 +259,6 @@ You may also pass an array as the third argument to the `dispatchFrom` method. T
 		'taxPercentage' => 20,
 	]);
 
-<a name="running-the-queue-listener"></a>
 ## Running The Queue Listener
 
 #### Starting The Queue Listener
@@ -303,7 +295,6 @@ In addition, you may specify the number of seconds to wait before polling for ne
 
 Note that the queue only "sleeps" if no jobs are on the queue. If more jobs are available, the queue will continue to work them without sleeping.
 
-<a name="supervisor-configuration"></a>
 ### Supervisor Configuration
 
 Supervisor is a process monitor for the Linux operating system, and will automatically restart your `queue:listen` or `queue:work` commands if they fail. To install Supervisor on Ubuntu, you may use the following command:
@@ -332,7 +323,6 @@ In this example, the `numprocs` directive will instruct Supervisor to run 8 `que
 
 For more information on configuring and using Supervisor, consult the [Supervisor documentation](http://supervisord.org/index.html). Alternatively, you may use [Lumen Forge](https://forge.laravel.com) to automatically configure and manage your Supervisor configuration from a convenient web interface.
 
-<a name="daemon-queue-listener"></a>
 ### Daemon Queue Listener
 
 The `queue:work` Artisan command includes a `--daemon` option for forcing the queue worker to continue processing jobs without ever re-booting the framework. This results in a significant reduction of CPU usage when compared to the `queue:listen` command:
@@ -353,7 +343,6 @@ Daemon queue workers do not restart the framework before processing each job. Th
 
 Similarly, your database connection may disconnect when being used by long-running daemon. You may use the `DB::reconnect` method to ensure you have a fresh connection.
 
-<a name="deploying-with-daemon-queue-listeners"></a>
 ### Deploying With Daemon Queue Listeners
 
 Since daemon queue workers are long-lived processes, they will not pick up changes in your code without being restarted. So, the simplest way to deploy an application using daemon queue workers is to restart the workers during your deployment script. You may gracefully restart all of the workers by including the following command in your deployment script:
@@ -364,7 +353,6 @@ This command will gracefully instruct all queue workers to restart after they fi
 
 > **Note:** This command relies on the cache system to schedule the restart. By default, APCu does not work for CLI jobs. If you are using APCu, add `apc.enable_cli=1` to your APCu configuration.
 
-<a name="dealing-with-failed-jobs"></a>
 ## Dealing With Failed Jobs
 
 Since things don't always go as planned, sometimes your queued jobs will fail. Don't worry, it happens to the best of us! Lumen includes a convenient way to specify the maximum number of times a job should be attempted. After a job has exceeded this amount of attempts, it will be inserted into a `failed_jobs` table. The name of the failed jobs can be configured via the `config/queue.php` configuration file.
@@ -377,7 +365,6 @@ When running your [queue listener](#running-the-queue-listener), you may specify
 
 	php artisan queue:listen connection-name --tries=3
 
-<a name="failed-job-events"></a>
 ### Failed Job Events
 
 If you would like to register an event that will be called when a queued job fails, you may use the `Queue::failing` method. This event is a great opportunity to notify your team via e-mail or [HipChat](https://www.hipchat.com). For example, we may attach a callback to this event from the `AppServiceProvider` that is included with Lumen:
@@ -454,7 +441,6 @@ For more granular control, you may define a `failed` method directly on a queue 
 		}
 	}
 
-<a name="retrying-failed-jobs"></a>
 ### Retrying Failed Jobs
 
 To view all of your failed jobs that have been inserted into your `failed_jobs` database table, you may use the `queue:failed` Artisan command:

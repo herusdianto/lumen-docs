@@ -10,12 +10,10 @@
 - [Conditionally Adding Rules](#conditionally-adding-rules)
 - [Custom Validation Rules](#custom-validation-rules)
 
-<a name="introduction"></a>
 ## Introduction
 
 Lumen provides several different approaches to validate your application's incoming data. By default, Lumen's base controller class uses a `ValidatesRequests` trait which provides a convenient method to validate incoming HTTP request with a variety of powerful validation rules.
 
-<a name="validation-quickstart"></a>
 ## Validation Quickstart
 
 To learn about Lumen's powerful validation features, let's look at a complete example of validating a form and displaying the error messages back to the user.
@@ -143,10 +141,8 @@ If you wish to customize the format of the validation errors that are flashed to
 
 In this example, we used a traditional form to send data to the application. However, many applications use AJAX requests. When using the `validate` method during an AJAX request, Lumen will not generate a redirect response. Instead, Lumen generates a JSON response containing all of the validation errors. This JSON response will be sent with a 422 HTTP status code.
 
-<a name="other-validation-approaches"></a>
 ## Other Validation Approaches
 
-<a name="manually-creating-validators"></a>
 ### Manually Creating Validators
 
 If you do not want to use the `ValidatesRequests` trait's `validate` method, you may create a validator instance manually using the `Validator` facade. The `make` method on the facade generates a new validator instance:
@@ -215,7 +211,6 @@ The validator also allows you to attach callbacks to be run after validation is 
 		//
 	}
 
-<a name="working-with-error-messages"></a>
 ## Working With Error Messages
 
 After calling the `errors` method on a `Validator` instance, you will receive an `Illuminate\Support\MessageBag` instance, which has a variety of convenient methods for working with error messages.
@@ -260,7 +255,6 @@ To retrieve an array of all messages for all fields, use the `all` method:
 		//
 	}
 
-<a name="custom-error-messages"></a>
 ### Custom Error Messages
 
 If needed, you may use custom error messages for validation instead of the defaults. There are several ways to specify custom messages. First, you may pass the custom messages as the third argument to the `Validator::make` method:
@@ -288,7 +282,6 @@ Sometimes you may wish to specify a custom error messages only for a specific fi
 		'email.required' => 'We need to know your e-mail address!',
 	];
 
-<a name="localization"></a>
 #### Specifying Custom Messages In Language Files
 
 In many cases, you may wish to specify your attribute specific custom messages in a language file instead of passing them directly to the `Validator`. To do so, add your messages to `custom` array in the `resources/lang/xx/validation.php` language file.
@@ -299,23 +292,10 @@ In many cases, you may wish to specify your attribute specific custom messages i
 		],
 	],
 
-<a name="available-validation-rules"></a>
 ## Available Validation Rules
 
 Below is a list of all available validation rules and their function:
 
-<style>
-	.collection-method-list {
-		column-count: 3; -moz-column-count: 3; -webkit-column-count: 3;
-		column-gap: 2em; -moz-column-gap: 2em; -webkit-column-gap: 2em;
-	}
-
-	.collection-method-list a {
-		display: block;
-	}
-</style>
-
-<div class="collection-method-list" markdown="1">
 - [Accepted](#rule-accepted)
 - [Active URL](#rule-active-url)
 - [After (Date)](#rule-after)
@@ -356,94 +336,75 @@ Below is a list of all available validation rules and their function:
 - [Timezone](#rule-timezone)
 - [Unique (Database)](#rule-unique)
 - [URL](#rule-url)
-</div>
 
-<a name="rule-accepted"></a>
 #### accepted
 
 The field under validation must be _yes_, _on_, _1_, or _true_. This is useful for validating "Terms of Service" acceptance.
 
-<a name="rule-active-url"></a>
 #### active_url
 
 The field under validation must be a valid URL according to the `checkdnsrr` PHP function.
 
-<a name="rule-after"></a>
 #### after:_date_
 
 The field under validation must be a value after a given date. The dates will be passed into the `strtotime` PHP function.
 
-<a name="rule-alpha"></a>
 #### alpha
 
 The field under validation must be entirely alphabetic characters.
 
-<a name="rule-alpha-dash"></a>
 #### alpha_dash
 
 The field under validation may have alpha-numeric characters, as well as dashes and underscores.
 
-<a name="rule-alpha-num"></a>
 #### alpha_num
 
 The field under validation must be entirely alpha-numeric characters.
 
-<a name="rule-array"></a>
 #### array
 
 The field under validation must be a PHP `array`.
 
-<a name="rule-before"></a>
 #### before:_date_
 
 The field under validation must be a value preceding the given date. The dates will be passed into the PHP `strtotime` function.
 
-<a name="rule-between"></a>
 #### between:_min_,_max_
 
 The field under validation must have a size between the given _min_ and _max_. Strings, numerics, and files are evaluated in the same fashion as the [`size`](#rule-size) rule.
 
-<a name="rule-boolean"></a>
 #### boolean
 
 The field under validation must be able to be cast as a boolean. Accepted input are `true`, `false`, `1`, `0`, `"1"`, and `"0"`.
 
-<a name="rule-confirmed"></a>
 #### confirmed
 
 The field under validation must have a matching field of `foo_confirmation`. For example, if the field under validation is `password`, a matching `password_confirmation` field must be present in the input.
 
-<a name="rule-date"></a>
 #### date
 
 The field under validation must be a valid date according to the `strtotime` PHP function.
 
-<a name="rule-date-format"></a>
 #### date_format:_format_
 
 The field under validation must match the given _format_. The format will be evaluated using the PHP `date_parse_from_format` function.
 
-<a name="rule-different"></a>
 #### different:_field_
 
 The field under validation must have a different value than _field_.
 
-<a name="rule-digits"></a>
 #### digits:_value_
 
 The field under validation must be _numeric_ and must have an exact length of _value_.
 
-<a name="rule-digits-between"></a>
 #### digits_between:_min_,_max_
 
 The field under validation must have a length between the given _min_ and _max_.
 
-<a name="rule-email"></a>
 #### email
 
 The field under validation must be formatted as an e-mail address.
 
-<a name="rule-exists"></a>
 #### exists:_table_,_column_
 
 The field under validation must exist on a given database table.
@@ -464,32 +425,26 @@ Passing `NULL` as a "where" clause value will add a check for a `NULL` database 
 
 	'email' => 'exists:staff,email,deleted_at,NULL'
 
-<a name="rule-image"></a>
 #### image
 
 The file under validation must be an image (jpeg, png, bmp, gif, or svg)
 
-<a name="rule-in"></a>
 #### in:_foo_,_bar_,...
 
 The field under validation must be included in the given list of values.
 
-<a name="rule-integer"></a>
 #### integer
 
 The field under validation must be an integer.
 
-<a name="rule-ip"></a>
 #### ip
 
 The field under validation must be an IP address.
 
-<a name="rule-max"></a>
 #### max:_value_
 
 The field under validation must be less than or equal to a maximum _value_. Strings, numerics, and files are evaluated in the same fashion as the [`size`](#rule-size) rule.
 
-<a name="rule-mimes"></a>
 #### mimes:_foo_,_bar_,...
 
 The file under validation must have a MIME type corresponding to one of the listed extensions.
@@ -498,79 +453,64 @@ The file under validation must have a MIME type corresponding to one of the list
 
 	'photo' => 'mimes:jpeg,bmp,png'
 
-<a name="rule-min"></a>
 #### min:_value_
 
 The field under validation must have a minimum _value_. Strings, numerics, and files are evaluated in the same fashion as the [`size`](#rule-size) rule.
 
-<a name="rule-not-in"></a>
 #### not_in:_foo_,_bar_,...
 
 The field under validation must not be included in the given list of values.
 
-<a name="rule-numeric"></a>
 #### numeric
 
 The field under validation must be numeric.
 
-<a name="rule-regex"></a>
 #### regex:_pattern_
 
 The field under validation must match the given regular expression.
 
 **Note:** When using the `regex` pattern, it may be necessary to specify rules in an array instead of using pipe delimiters, especially if the regular expression contains a pipe character.
 
-<a name="rule-required"></a>
 #### required
 
 The field under validation must be present in the input data.
 
-<a name="rule-required-if"></a>
 #### required_if:_anotherfield_,_value_,...
 
 The field under validation must be present if the _anotherfield_ field is equal to any _value_.
 
-<a name="rule-required-with"></a>
 #### required_with:_foo_,_bar_,...
 
 The field under validation must be present _only if_ any of the other specified fields are present.
 
-<a name="rule-required-with-all"></a>
 #### required_with_all:_foo_,_bar_,...
 
 The field under validation must be present _only if_ all of the other specified fields are present.
 
-<a name="rule-required-without"></a>
 #### required_without:_foo_,_bar_,...
 
 The field under validation must be present _only when_ any of the other specified fields are not present.
 
-<a name="rule-required-without-all"></a>
 #### required_without_all:_foo_,_bar_,...
 
 The field under validation must be present _only when_ all of the other specified fields are not present.
 
-<a name="rule-same"></a>
 #### same:_field_
 
 The given _field_ must match the field under validation.
 
-<a name="rule-size"></a>
 #### size:_value_
 
 The field under validation must have a size matching the given _value_. For string data, _value_ corresponds to the number of characters. For numeric data, _value_ corresponds to a given integer value. For files, _size_ corresponds to the file size in kilobytes.
 
-<a name="rule-string"></a>
 #### string
 
 The field under validation must be a string.
 
-<a name="rule-timezone"></a>
 #### timezone
 
 The field under validation must be a valid timezone identifier according to the `timezone_identifiers_list` PHP function.
 
-<a name="rule-unique"></a>
 #### unique:_table_,_column_,_except_,_idColumn_
 
 The field under validation must be unique on a given database table. If the `column` option is not specified, the field name will be used.
@@ -599,12 +539,10 @@ You may also specify more conditions that will be added as "where" clauses to th
 
 In the rule above, only rows with an `account_id` of `1` would be included in the unique check.
 
-<a name="rule-url"></a>
 #### url
 
 The field under validation must be a valid URL according to PHP's `filter_var` function.
 
-<a name="conditionally-adding-rules"></a>
 ## Conditionally Adding Rules
 
 In some situations, you may wish to run validation checks against a field **only** if that field is present in the input array. To quickly accomplish this, add the `sometimes` rule to your rule list:
@@ -638,7 +576,6 @@ The first argument passed to the `sometimes` method is the name of the field we 
 
 > **Note:** The `$input` parameter passed to your `Closure` will be an instance of `Illuminate\Support\Fluent` and may be used to access your input and files.
 
-<a name="custom-validation-rules"></a>
 ## Custom Validation Rules
 
 Lumen provides a variety of helpful validation rules; however, you may wish to specify some of your own. One method of registering custom validation rules is using the `extend` method on the `Validator` facade. Let's use this method within a [service provider](/docs/providers) to register a custom validation rule:

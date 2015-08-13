@@ -6,14 +6,12 @@
 - [Middleware Parameters](#middleware-parameters)
 - [Terminable Middleware](#terminable-middleware)
 
-<a name="introduction"></a>
 ## Introduction
 
 HTTP middleware provide a convenient mechanism for filtering HTTP requests entering your application. For example, Lumen includes a middleware that verifies the user of your application is authenticated. If the user is not authenticated, the middleware will redirect the user to the login screen. However, if the user is authenticated, the middleware will allow the request to proceed further into the application.
 
 Of course, additional middleware can be written to perform a variety of tasks besides authentication. A CORS middleware might be responsible for adding the proper headers to all responses leaving your application. A logging middleware might log all incoming requests to your application.
 
-<a name="defining-middleware"></a>
 ## Defining Middleware
 
 Middleware are typically placed in the `app/Http/Middleware` directory. To create a new middleware, define a class with a `handle` method like the following:
@@ -102,7 +100,6 @@ However, this middleware would perform its task **after** the request is handled
 		}
 	}
 
-<a name="registering-middleware"></a>
 ## Registering Middleware
 
 ### Global Middleware
@@ -123,7 +120,6 @@ Once the middleware has been defined in the bootstrap file, you may use the `mid
 		//
 	}]);
 
-<a name="middleware-parameters"></a>
 ## Middleware Parameters
 
 Middleware can also receive additional custom parameters. For example, if your application needs to verify that the authenticated user has a given "role" before performing a given action, you could create a `RoleMiddleware` that receives a role name as an additional argument.
@@ -163,7 +159,6 @@ Middleware parameters may be specified when defining the route by separating the
 		//
 	}]);
 
-<a name="terminable-middleware"></a>
 ## Terminable Middleware
 
 Sometimes a middleware may need to do some work after the HTTP response has already been sent to the browser. For example, the "session" middleware included with Lumen writes the session data to storage _after_ the response has been sent to the browser. To accomplish this, define the middleware as "terminable" by adding a `terminate` method to the middleware:
