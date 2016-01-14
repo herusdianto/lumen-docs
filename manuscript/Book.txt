@@ -1,10 +1,14 @@
-installation.md
 releases.md
+upgrade.md
+installation.md
+configuration.md
 routing.md
 middleware.md
 controllers.md
 requests.md
 responses.md
+authentication.md
+authorization.md
 views.md
 cache.md
 database.md
@@ -14,6 +18,5 @@ events.md
 queues.md
 container.md
 providers.md
-session.md
 testing.md
 validation.md
