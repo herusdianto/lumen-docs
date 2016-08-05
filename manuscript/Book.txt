@@ -9,7 +9,6 @@ requests.md
 responses.md
 authentication.md
 authorization.md
-views.md
 cache.md
 database.md
 encryption.md

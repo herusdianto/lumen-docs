@@ -26,6 +26,8 @@ If you would like to have complete control over how Monolog is configured for yo
 
     $app->configureMonologUsing(function($monolog) {
         $monolog->pushHandler(...);
+        
+        return $monolog;
     });
 
     return $app;
@@ -95,7 +97,7 @@ This method may be used at any time during the request's lifecycle.
 
 ## Logging
 
-The Lumen logging facilities provide a simple layer on top of the powerful [Monolog](http://github.com/seldaek/monolog) library. By default, Lumen is configured to create daily log files for your application which are stored in the `storage/logs` directory. You may write information to the logs using the `Log` facade:
+The Lumen logging facilities provide a simple layer on top of the powerful [Monolog](http://github.com/seldaek/monolog) library. By default, Lumen is configured to create a single log file for your application which is stored in the `storage/logs` directory. You may write information to the logs using the `Log` facade:
 
     <?php
 
@@ -120,6 +122,8 @@ The Lumen logging facilities provide a simple layer on top of the powerful [Mono
             return User::findOrFail($id);
         }
     }
+
+> **Note:** Before using the `Log` facade, be sure you have uncommented the `$app->withFacades()` method call in your `bootstrap/app.php` file.
 
 The logger provides the eight logging levels defined in [RFC 5424](http://tools.ietf.org/html/rfc5424): **emergency**, **alert**, **critical**, **error**, **warning**, **notice**, **info** and **debug**.
 

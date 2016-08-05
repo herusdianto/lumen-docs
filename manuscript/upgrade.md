@@ -4,13 +4,27 @@
 
 ## Upgrading To 5.2.0 From 5.1
 
-Lumen 5.2 represents a more decided shift towards focusing on stateless APIs. Therefore, sessions have been removed from the framework. If you would like to use these features, you should uprade your Lumen 5.1 application to Laravel 5.2.
+Lumen 5.2 represents a more decided shift towards focusing on stateless APIs. Therefore, sessions have been removed from the framework. If you would like to use these features, you should upgrade your Lumen 5.1 application to Laravel 5.2.
 
 Upgrading your Lumen application to the full Laravel framework mainly involves copying your routes and classes over into a fresh installation of Laravel. Since Laravel and Lumen share many of the same components, your classes should not require any modification.
 
 ### Updating Dependencies
 
-Update your `composer.json` file to point to `laravel/lumen-framework 5.2.*`.
+Update your `composer.json` file to point to `laravel/lumen-framework 5.2.*` and `vlucas/phpdotenv ~2.2`.
+
+### Bootstrap
+
+In the `bootstrap/app.php` file you need to modify the `Dotenv::load(...)` method call to the following:
+
+    try {
+        (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+    } catch (Dotenv\Exception\InvalidPathException $e) {
+        //
+    }
+
+### Application
+
+Lumen no longer implements the `Illuminate\Contracts\Foundation\Application` contract.  Any `Application` contract type-hints should be updated to reference the `Laravel\Lumen\Application` class directly.
 
 ### Authentication
 
@@ -113,3 +127,17 @@ If you made use of Laravel's Flysystem integration, you will need to register th
 The `ValidatesRequests` trait has been merged into the `ProvidesConvenienceMethods` trait used by Lumen's base controller.
 
 If you previously used the `ValidatesRequests` trait outside of the BaseController, you may copy it [from the 5.1 branch](https://github.com/laravel/lumen-framework/blob/5.1/src/Routing/ValidatesRequests.php) or use the full `ProvidesConvenienceMethods` trait.
+
+### Testing
+
+The `DatabaseMigrations` and `DatabaseTransactions` traits have moved from `Illuminate\Foundation\Testing\DatabaseMigrations` and `Illuminate\Foundation\Testing\DatabaseTransactions` to a new location. Update your tests to import the new namespace:
+
+    <?php
+
+    use Laravel\Lumen\Testing\DatabaseMigrations;
+    use Laravel\Lumen\Testing\DatabaseTransactions;
+
+    class ExampleTest extends TestCase
+    {
+        use DatabaseMigrations;
+    }

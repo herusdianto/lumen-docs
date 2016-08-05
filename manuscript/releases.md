@@ -11,7 +11,7 @@ Lumen 5.2.0 upgrades the framework to use the 5.2 family of Laravel components, 
 
 ### Only Stateless APIs
 
-Lumen 5.2 represents a shift on slimming Lumen to focus solely focusing serving stateless, JSON APIs. **As such, sessions and views are no longer included with the framework.** If you need access to these features, you should use the full Laravel framework. Upgrading your Lumen application to the full Laravel framework mainly involves copying your routes and classes over into a fresh installation of Laravel. Since Laravel and Lumen share many of the same components, your classes should not require any modification.
+Lumen 5.2 represents a shift on slimming Lumen to focus solely on serving stateless, JSON APIs. **As such, sessions and views are no longer included with the framework.** If you need access to these features, you should use the full Laravel framework. Upgrading your Lumen application to the full Laravel framework mainly involves copying your routes and classes over into a fresh installation of Laravel. Since Laravel and Lumen share many of the same components, your classes should not require any modification.
 
 ### Authentication
 
@@ -30,8 +30,8 @@ Lumen 5.1.0 upgrades the framework to use the 5.1 family of Laravel components. 
 When upgrading to Lumen 5.0.4, you should update your `bootstrap/app.php` file's creation of the Lumen application class to the following:
 
     $app = new Laravel\Lumen\Application(
-        realpath(__DIR__.'/../')
-    );
+		realpath(__DIR__.'/../')
+	);
 
 > **Note:** This is not a **required** change; however, it should prevent some bugs when using the Artisan CLI and PHP's built-in web server.
 
